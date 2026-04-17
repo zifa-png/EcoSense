@@ -58,15 +58,14 @@ nav {
   left: 0;
   right: 0;
   z-index: 999;
-  background: rgba(11, 18, 11, .92);
+  background: rgba(11, 18, 11, .93);
   backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--border);
   height: 60px;
   display: flex;
   align-items: center;
   padding: 0 20px;
-  gap: 10px;
-  transition: background .3s
+  gap: 10px
 }
 
 [data-theme=light] nav {
@@ -143,15 +142,14 @@ nav {
   cursor: pointer;
   display: flex;
   align-items: center;
-  justify-content: center;
-  transition: all .2s
+  justify-content: center
 }
 
 .btn-theme:hover {
   background: var(--gglow)
 }
 
-.btn-lapor {
+.btn-lapor-nav {
   background: var(--green);
   color: #fff;
   border: none;
@@ -161,11 +159,10 @@ nav {
   font-weight: 600;
   cursor: pointer;
   font-family: 'DM Sans', sans-serif;
-  white-space: nowrap;
-  transition: all .2s
+  white-space: nowrap
 }
 
-.btn-lapor:hover {
+.btn-lapor-nav:hover {
   background: var(--green2)
 }
 
@@ -210,8 +207,7 @@ nav {
   padding: 6px 14px;
   border-radius: 20px;
   margin-bottom: 22px;
-  animation: fu .6s ease both;
-  letter-spacing: .04em
+  animation: fu .6s ease both
 }
 
 .bdot {
@@ -464,7 +460,7 @@ nav {
   box-shadow: 0 10px 28px rgba(74, 197, 113, .07)
 }
 
-.feat-icon {
+.fi {
   width: 40px;
   height: 40px;
   border-radius: 10px;
@@ -570,7 +566,7 @@ textarea {
   min-height: 85px
 }
 
-.frow {
+.frow2 {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 14px
@@ -663,39 +659,6 @@ textarea {
   background: var(--gglow)
 }
 
-.foto-wrap {
-  width: 100%;
-  padding: 11px 14px;
-  background: var(--bg2);
-  border: 1px solid var(--border2);
-  border-radius: var(--rs);
-  cursor: pointer;
-  color: var(--text2);
-  font-size: 13px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  transition: border .2s
-}
-
-.foto-wrap:hover {
-  border-color: var(--green)
-}
-
-.foto-wrap input {
-  display: none
-}
-
-.foto-prev {
-  width: 100%;
-  height: 150px;
-  border-radius: var(--rs);
-  object-fit: cover;
-  margin-top: 10px;
-  display: none;
-  border: 1px solid var(--border2)
-}
-
 .btn-submit {
   width: 100%;
   padding: 14px;
@@ -716,17 +679,97 @@ textarea {
   transform: translateY(-1px)
 }
 
+.btn-submit:disabled {
+  opacity: .6;
+  cursor: not-allowed;
+  transform: none
+}
+
 .toast {
   display: none;
   margin-top: 14px;
-  background: rgba(74, 197, 113, .1);
-  border: 1px solid rgba(74, 197, 113, .38);
   border-radius: var(--rs);
   padding: 14px 18px;
-  color: var(--green);
   font-size: 13px;
   font-weight: 500;
   text-align: center
+}
+
+.toast.ok {
+  background: rgba(74, 197, 113, .1);
+  border: 1px solid rgba(74, 197, 113, .38);
+  color: var(--green)
+}
+
+.toast.err {
+  background: rgba(255, 92, 92, .1);
+  border: 1px solid rgba(255, 92, 92, .38);
+  color: var(--red)
+}
+
+.klhk-box {
+  margin-top: 18px;
+  background: rgba(74, 197, 113, .06);
+  border: 1px solid var(--border2);
+  border-radius: var(--r);
+  padding: 20px;
+  display: flex;
+  gap: 14px;
+  align-items: flex-start
+}
+
+.klhk-box.hidden {
+  display: none
+}
+
+.klhk-icon {
+  font-size: 30px;
+  flex-shrink: 0
+}
+
+.klhk-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 6px;
+  color: var(--green)
+}
+
+.klhk-sub {
+  font-size: 12px;
+  color: var(--text2);
+  line-height: 1.6;
+  margin-bottom: 12px
+}
+
+.klhk-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 14px;
+  background: var(--green);
+  color: #fff;
+  border-radius: var(--rs);
+  font-size: 12px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all .2s;
+  margin-right: 8px;
+  margin-bottom: 6px
+}
+
+.klhk-btn:hover {
+  background: var(--green2)
+}
+
+.klhk-btn2 {
+  background: var(--gdim);
+  color: var(--green);
+  border: 1px solid var(--border2)
+}
+
+.klhk-btn2:hover {
+  background: var(--gglow)
 }
 
 /* PETA */
@@ -1478,7 +1521,7 @@ textarea {
   color: var(--green)
 }
 
-.mni-icon {
+.mi {
   font-size: 17px
 }
 
@@ -1534,7 +1577,7 @@ textarea {
     grid-template-columns: 1fr
   }
 
-  .frow,
+  .frow2,
   .frow3 {
     grid-template-columns: 1fr
   }
@@ -1553,13 +1596,17 @@ textarea {
     width: auto
   }
 
+  .chat-fab {
+    bottom: 72px
+  }
+
   .poin-profile {
     flex-direction: column;
     text-align: center
   }
 
-  .chat-fab {
-    bottom: 72px
+  .klhk-box {
+    flex-direction: column
   }
 
   #page-lapor,
