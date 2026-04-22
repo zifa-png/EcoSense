@@ -12,7 +12,7 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
-<link rel="stylesheet" href="./style.css"/>
+<link rel="stylesheet" href="css/style.css"/>
 </head>
 <body>
 
@@ -51,9 +51,9 @@
   </div>
   <div class="hero">
     <div class="hero-bg"></div>
-    <div class="hero-badge"><div class="bdot"></div>Memantau 34 Provinsi Indonesia • Real-time</div>
+    <div class="hero-badge"><div class="bdot"></div>Memantau 38 Provinsi Indonesia • Real-time</div>
     <h1>Jaga <span class="acc">Lingkungan</span><br>Indonesia Bersama</h1>
-    <p class="hero-sub">Platform nasional pelaporan masalah lingkungan secara real-time. Laporan langsung muncul di peta dan dikirim ke KLHK pemerintah.</p>
+    <p class="hero-sub">Platform komunitas pelaporan masalah lingkungan secara real-time. Setiap laporan langsung muncul di peta dan terlihat oleh semua pengguna di seluruh Indonesia.</p>
     <div class="hero-btns">
       <button class="btn-p" onclick="showPage('lapor')">📍 Lapor Sekarang</button>
       <button class="btn-s" onclick="showPage('peta')">🗺️ Lihat Peta</button>
@@ -65,19 +65,21 @@
       <div class="st-item"><span class="st-num" id="s-prov">0</span><div class="st-lbl">Provinsi Aktif</div></div>
     </div>
   </div>
+
   <div class="swrap">
     <div class="slbl">Isu Nasional</div>
     <div class="stitle">Masalah Lingkungan<br>Skala Indonesia</div>
     <div class="isu-grid" id="isu-grid"></div>
-    <div class="slbl" style="margin-top:8px">Fitur Unggulan</div>
+
+    <div class="slbl" style="margin-top:40px">Fitur Unggulan</div>
     <div class="stitle">Satu Platform,<br>Semua Solusi</div>
     <div class="feat-grid">
       <div class="feat-card" onclick="showPage('lapor')"><div class="fi">📝</div><h3>Lapor Mudah</h3><p>Pilih provinsi, kota, kecamatan. Laporan real-time muncul di peta untuk semua pengguna.</p></div>
       <div class="feat-card" onclick="showPage('peta')"><div class="fi">🗺️</div><h3>Peta Real-time</h3><p>Semua laporan dari seluruh Indonesia tampil langsung di peta interaktif.</p></div>
       <div class="feat-card" onclick="showPage('dashboard')"><div class="fi">📊</div><h3>Dashboard Bersama</h3><p>Statistik dari semua laporan — total, tren, jenis masalah, papan peringkat.</p></div>
-      <div class="feat-card" onclick="toggleChat()"><div class="fi">🤖</div><h3>AI Konsultan</h3><p>Tanya AI soal isu lingkungan Indonesia secara gratis.</p></div>
+      <div class="feat-card" onclick="toggleChat()"><div class="fi">🤖</div><h3>AI Konsultan</h3><p>Tanya AI soal isu lingkungan Indonesia kapan saja, gratis dan tanpa batas.</p></div>
       <div class="feat-card" onclick="showPage('edukasi')"><div class="fi">📚</div><h3>Artikel Edukasi</h3><p>Konten lingkungan untuk pelajar, guru, dan seluruh warga Indonesia.</p></div>
-      <div class="feat-card" onclick="showPage('poin')"><div class="fi">🏆</div><h3>Poin & Sertifikat</h3><p>Kumpulkan poin tiap laporan dan download sertifikat Pahlawan Lingkungan.</p></div>
+      <div class="feat-card" onclick="showPage('poin')"><div class="fi">🏆</div><h3>Poin &amp; Sertifikat</h3><p>Kumpulkan poin tiap laporan dan download sertifikat Pahlawan Lingkungan.</p></div>
     </div>
   </div>
 </div>
@@ -87,17 +89,13 @@
   <div class="phdr">
     <div class="slbl">Form Laporan</div>
     <h2>Laporkan Masalah Lingkungan</h2>
-    <p>Laporan tersimpan di database, muncul di peta semua pengguna, dan <strong>dikirim otomatis ke email KLHK pemerintah</strong>.</p>
+    <p>Laporan tersimpan di database dan <strong>langsung muncul di peta</strong> untuk dilihat semua pengguna EcoSense.</p>
   </div>
   <div class="fcard">
     <div class="frow2">
       <div class="fg">
         <label class="lbl">Nama Pelapor</label>
         <input type="text" id="f-nama" placeholder="Nama kamu (opsional)"/>
-      </div>
-      <div class="fg">
-        <label class="lbl">Email Kamu</label>
-        <input type="text" id="f-email" placeholder="@email kamu.com"/>
       </div>
     </div>
 
@@ -157,19 +155,8 @@
       <textarea id="f-desc" placeholder="Ceritakan kondisi yang kamu lihat — sudah berapa lama, dampak ke warga, seberapa parah..."></textarea>
     </div>
 
-    <button class="btn-submit" id="btn-submit" onclick="submitLaporan()">📤 Kirim Laporan</button>
+    <button class="btn-submit" id="btn-submit" onclick="submitLaporan()">📤 Kirim Laporan ke Peta</button>
     <div class="toast" id="toast"></div>
-
-    <!-- Info kirim ke KLHK -->
-    <div class="klhk-box hidden" id="klhk-box">
-      <div class="klhk-icon">🏛️</div>
-      <div>
-        <div class="klhk-title">Laporan otomatis dikirim ke KLHK!</div>
-        <div class="klhk-sub">Laporanmu sudah terkirim ke <strong>pengaduan.klhk@menlhk.go.id</strong> (Kementerian Lingkungan Hidup & Kehutanan). Klik tombol di bawah untuk memastikan email terkirim:</div>
-        <a id="klhk-mailto" href="#" class="klhk-btn">📧 Kirim Email ke KLHK</a>
-        <a href="https://lapor.go.id" target="_blank" class="klhk-btn klhk-btn2">🔗 Laporkan juga di LAPOR.go.id</a>
-      </div>
-    </div>
   </div>
 </div>
 
@@ -183,7 +170,6 @@
     <button class="fbtn"       onclick="filterMap('polusi',this)">🌫️ Polusi</button>
     <button class="fbtn"       onclick="filterMap('sampah',this)">🗑️ Sampah</button>
     <button class="fbtn"       onclick="filterMap('hutan',this)">🌿 Hutan</button>
-    <button class="fbtn" id="heat-btn" onclick="toggleHeat()">🌡️ Heatmap</button>
     <input class="search-peta" id="search-peta" placeholder="🔍 Cari provinsi / kota..." oninput="searchMap()"/>
   </div>
   <div id="peta-empty" class="peta-empty">
@@ -203,7 +189,7 @@
     <div class="met-card"><div class="met-lbl">Total Laporan</div><div class="met-val" id="m-total">0</div><div class="met-sub">dari semua pengguna</div></div>
     <div class="met-card"><div class="met-lbl">Laporan Minggu Ini</div><div class="met-val" id="m-week">0</div><div class="met-sub">7 hari terakhir</div></div>
     <div class="met-card"><div class="met-lbl">Sudah Ditangani</div><div class="met-val" id="m-done">0</div><div class="met-sub">terverifikasi selesai</div></div>
-    <div class="met-card"><div class="met-lbl">Provinsi Aktif</div><div class="met-val" id="m-prov">0</div><div class="met-sub">dari 34 provinsi</div></div>
+    <div class="met-card"><div class="met-lbl">Provinsi Aktif</div><div class="met-val" id="m-prov">0</div><div class="met-sub">dari 38 provinsi</div></div>
   </div>
   <div id="dash-empty" class="dash-empty">
     <div style="font-size:48px;margin-bottom:12px">📊</div>
@@ -228,11 +214,11 @@
   <p style="color:var(--text2);font-size:14px">Konten pendidikan lingkungan untuk pelajar, guru, dan seluruh warga Indonesia.</p>
   <div class="edu-grid">
     <div class="edu-card" onclick="openEdu(0)"><div class="edu-thumb" style="background:linear-gradient(135deg,#1a2e1a,#2d4a2d)">🗑️</div><div class="edu-body"><span class="edu-tag">Sampah</span><h3>Cara Pilah Sampah yang Benar</h3><p>Panduan memilah sampah organik, anorganik, dan B3 di rumah.</p></div></div>
-    <div class="edu-card" onclick="openEdu(1)"><div class="edu-thumb" style="background:linear-gradient(135deg,#1a1a2e,#2a2a45)">🌫️</div><div class="edu-body"><span class="edu-tag">Polusi Udara</span><h3>Bahaya Kabut Asap & Karhutla</h3><p>Dampak kebakaran hutan dan cara melindungi keluarga.</p></div></div>
+    <div class="edu-card" onclick="openEdu(1)"><div class="edu-thumb" style="background:linear-gradient(135deg,#1a1a2e,#2a2a45)">🌫️</div><div class="edu-body"><span class="edu-tag">Polusi Udara</span><h3>Bahaya Kabut Asap &amp; Karhutla</h3><p>Dampak kebakaran hutan dan cara melindungi keluarga.</p></div></div>
     <div class="edu-card" onclick="openEdu(2)"><div class="edu-thumb" style="background:linear-gradient(135deg,#0d2535,#1a4a6a)">💧</div><div class="edu-body"><span class="edu-tag">Air Bersih</span><h3>Menjaga Sumber Air Indonesia</h3><p>Pencemaran Citarum, Siak, Musi dan peran warga.</p></div></div>
-    <div class="edu-card" onclick="openEdu(3)"><div class="edu-thumb" style="background:linear-gradient(135deg,#1a2a10,#2d4a18)">🌴</div><div class="edu-body"><span class="edu-tag">Hutan</span><h3>Deforestasi & Krisis Hutan Tropis</h3><p>Mengapa hutan Indonesia harus dilindungi bersama.</p></div></div>
-    <div class="edu-card" onclick="openEdu(4)"><div class="edu-thumb" style="background:linear-gradient(135deg,#0d1f35,#1a3a5a)">🌊</div><div class="edu-body"><span class="edu-tag">Laut & Pesisir</span><h3>Krisis Sampah Plastik di Laut</h3><p>Indonesia penyumbang sampah plastik laut terbesar di dunia.</p></div></div>
-    <div class="edu-card" onclick="openEdu(5)"><div class="edu-thumb" style="background:linear-gradient(135deg,#1a2e1a,#0d3d1a)">🌿</div><div class="edu-body"><span class="edu-tag">Jejak Karbon</span><h3>Jejak Karbon & Perubahan Iklim</h3><p>Cara mengurangi jejak karbon mulai dari rumah.</p></div></div>
+    <div class="edu-card" onclick="openEdu(3)"><div class="edu-thumb" style="background:linear-gradient(135deg,#1a2a10,#2d4a18)">🌴</div><div class="edu-body"><span class="edu-tag">Hutan</span><h3>Deforestasi &amp; Krisis Hutan Tropis</h3><p>Mengapa hutan Indonesia harus dilindungi bersama.</p></div></div>
+    <div class="edu-card" onclick="openEdu(4)"><div class="edu-thumb" style="background:linear-gradient(135deg,#0d1f35,#1a3a5a)">🌊</div><div class="edu-body"><span class="edu-tag">Laut &amp; Pesisir</span><h3>Krisis Sampah Plastik di Laut</h3><p>Indonesia penyumbang sampah plastik laut terbesar di dunia.</p></div></div>
+    <div class="edu-card" onclick="openEdu(5)"><div class="edu-thumb" style="background:linear-gradient(135deg,#1a2e1a,#0d3d1a)">🌿</div><div class="edu-body"><span class="edu-tag">Jejak Karbon</span><h3>Jejak Karbon &amp; Perubahan Iklim</h3><p>Cara mengurangi jejak karbon mulai dari rumah.</p></div></div>
   </div>
 </div>
 <div class="modal-ov" id="edu-ov" onclick="closeEduOv(event)">
@@ -242,7 +228,7 @@
 <!-- ===== POIN ===== -->
 <div class="page" id="page-poin">
   <div class="slbl">Gamifikasi</div>
-  <div class="stitle">Poin & Penghargaan</div>
+  <div class="stitle">Poin &amp; Penghargaan</div>
   <div class="poin-profile">
     <div class="avatar">🌿</div>
     <div class="poin-info">
@@ -264,7 +250,7 @@
   </div>
 </div>
 
-<!-- AI CHAT -->
+<!-- AI CHAT (floating) -->
 <button class="chat-fab" onclick="toggleChat()">🤖</button>
 <div class="chat-win" id="chat-win">
   <div class="chat-head">
@@ -277,8 +263,8 @@
   </div>
   <div class="quick-q">
     <span class="qq" onclick="sendQ('Bahaya kabut asap karhutla?')">Bahaya karhutla?</span>
-    <span class="qq" onclick="sendQ('Cara lapor ke KLHK?')">Cara lapor KLHK?</span>
     <span class="qq" onclick="sendQ('Cara kurangi sampah plastik?')">Kurangi plastik?</span>
+    <span class="qq" onclick="sendQ('Apa itu deforestasi?')">Deforestasi?</span>
   </div>
   <div class="chat-foot">
     <input class="chat-in" id="chat-in" placeholder="Tanya soal lingkungan..." onkeydown="if(event.key==='Enter')sendChat()"/>
@@ -286,6 +272,8 @@
   </div>
 </div>
 
-<script src="./script.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+<script src="js/script.js"></script>
 </body>
 </html>
