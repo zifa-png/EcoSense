@@ -805,7 +805,7 @@ kirimEmailLaporan(lap);
 }
 
 function resetForm() {
-  ['f-jenis', 'f-prov', 'f-lokasi', 'f-desc', 'f-nama', 'f-email'].forEach(function (id) {
+  ['f-jenis', 'f-prov', 'f-lokasi', 'f-desc', 'f-nama'].forEach(function (id) {
     var x = document.getElementById(id);
     if (x) x.value = '';
   });
