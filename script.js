@@ -758,7 +758,7 @@ function submitLaporan() {
     jenis: jenis, prov: prov, kota: kota, kec: kec, lokasi: lokasi,
     lat: base[0] + (Math.random() - 0.5) * 0.3,
     lng: base[1] + (Math.random() - 0.5) * 0.3,
-    sev: curSev, desc: desc, nama: nama, email: email,
+    sev: curSev, desc: desc, nama: nama,
     ts: Date.now(), done: false
   };
 
